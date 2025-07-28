@@ -1,28 +1,37 @@
 {
-  "name": "demo-app-ui",
+  "name": "flightview3",
   "private": true,
   "version": "0.1.0",
   "type": "module",
   "scripts": {
+    "watch": "vue-tsc --watch",
     "dev": "vite",
     "build": "vue-tsc -b && vite build",
     "preview": "vite preview",
-    "cesium:preinstall": "mkdir -p public/cesium && cp -R node_modules/cesium/Build/Cesium/* public/cesium/"
+    "clean": "bunx rimraf ./dist",
+    "deploy-mah": "vite build --base=/apps/$npm_package_name/ && rsync -avz --delete dist/ mah@mah.priv.at:/var/www/static.mah.priv.at/apps/$npm_package_name/ && echo visit https://static.mah.priv.at/apps/$npm_package_name"
   },
   "dependencies": {
-    "@tailwindcss/vite": "^4.1.5",
+    "@tailwindcss/vite": "^4.1.11",
     "@types/cesium": "^1.70.4",
-    "@vueuse/core": "^13.1.0",
-    "cesium": "^1.129.0",
-    "tailwindcss": "^4.1.5",
-    "vue": "^3.5.13"
+    "@vueuse/core": "^13.5.0",
+    "cesium": "^1.131.0",
+    "tailwindcss": "^4.1.11",
+    "vue": "^3.5.18"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^5.2.2",
+    "@vitejs/plugin-vue": "^6.0.1",
     "@vue/tsconfig": "^0.7.0",
-    "typescript": "~5.7.2",
-    "vite": "^6.3.1",
+    "typescript": "~5.8.3",
+    "vite": "^7.0.6",
     "vite-plugin-cesium": "^1.2.23",
-    "vue-tsc": "^2.2.8"
-  }
+    "vite-plugin-devtools-json": "^0.3.0",
+    "vite-plugin-qrcode": "^0.3.0",
+    "vite-plugin-vue-devtools": "^8.0.0",
+    "vue-tsc": "^3.0.4"
+  },
+  "trustedDependencies": [
+    "@tailwindcss/oxide",
+    "protobufjs"
+  ]
 }
